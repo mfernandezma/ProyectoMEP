@@ -1,0 +1,98 @@
+﻿@model ProyectoMEP.Models.Usuarios
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Usuarios</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.identificacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.identificacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.apellido1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.apellido1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.apellido2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.apellido2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.contrasenna)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.contrasenna)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.correo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.correo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.telefono)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.telefono)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fecha_nacimiento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fecha_nacimiento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Roles.nombre_rol)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Roles.nombre_rol)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_usuario }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

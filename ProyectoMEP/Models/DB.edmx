@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProyectoMEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="int" Nullable="false" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="afectado" Type="varchar" MaxLength="100" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>
+        <EntityType Name="cantones">
+          <Key>
+            <PropertyRef Name="id_canton" />
+          </Key>
+          <Property Name="id_canton" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_provincia" Type="int" />
+          <Property Name="nombre_canton" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="centros_educativos">
+          <Key>
+            <PropertyRef Name="id_centro" />
+          </Key>
+          <Property Name="id_centro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_centro" Type="varchar" MaxLength="50" />
+          <Property Name="id_tipo" Type="int" />
+          <Property Name="id_provincia" Type="int" />
+          <Property Name="id_canton" Type="int" />
+          <Property Name="id_distrito" Type="int" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="desglose">
+          <Key>
+            <PropertyRef Name="id_desglose" />
+          </Key>
+          <Property Name="id_desglose" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="id_materia" Type="int" />
+        </EntityType>
+        <EntityType Name="desglose_porcentaje">
+          <Key>
+            <PropertyRef Name="id_porcentaje" />
+          </Key>
+          <Property Name="id_porcentaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_desglose" Type="int" />
+          <Property Name="porcentaje" Type="float" />
+        </EntityType>
+        <EntityType Name="distritos">
+          <Key>
+            <PropertyRef Name="id_distrito" />
+          </Key>
+          <Property Name="id_distrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_canton" Type="int" />
+          <Property Name="id_provincia" Type="int" />
+          <Property Name="nombre_distrito" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ProyectoMEP.dbo.estudiantes_grupo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="estudiantes_grupo">
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="id_grupo" Type="int" />
+          <Property Name="id_nota" Type="int" />
+          <Property Name="notafinal" Type="int" />
+        </EntityType>-->
+        <EntityType Name="grupos">
+          <Key>
+            <PropertyRef Name="id_grupo" />
+          </Key>
+          <Property Name="id_grupo" Type="int" Nullable="false" />
+          <Property Name="id_nivel" Type="int" />
+          <Property Name="nombre_grupo" Type="varchar" MaxLength="25" />
+          <Property Name="id_centro" Type="int" />
+        </EntityType>
+        <EntityType Name="materias">
+          <Key>
+            <PropertyRef Name="id_materia" />
+          </Key>
+          <Property Name="id_materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_materia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="niveles">
+          <Key>
+            <PropertyRef Name="id_nivel" />
+          </Key>
+          <Property Name="id_nivel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_nivel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Notas">
+          <Key>
+            <PropertyRef Name="id_nota" />
+          </Key>
+          <Property Name="id_nota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nota" Type="float" />
+          <Property Name="id_grupo" Type="int" />
+          <Property Name="nota_porcentaje" Type="float" />
+        </EntityType>
+        <EntityType Name="profesores">
+          <Key>
+            <PropertyRef Name="id_profesor" />
+          </Key>
+          <Property Name="id_profesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="id_grupo" Type="int" />
+          <Property Name="id_materia" Type="int" />
+        </EntityType>
+        <EntityType Name="provincias">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_provincia" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="nombre_rol" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipo_centro">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="nombre_tipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_rol" Type="int" />
+          <Property Name="identificacion" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="contrasenna" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="25" />
+          <Property Name="fecha_nacimiento" Type="date" />
+        </EntityType>
+        <Association Name="fk_Usuario_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoMEPModelStoreContainer">
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cantones" EntityType="Self.cantones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="centros_educativos" EntityType="Self.centros_educativos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="desglose" EntityType="Self.desglose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="desglose_porcentaje" EntityType="Self.desglose_porcentaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distritos" EntityType="Self.distritos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grupos" EntityType="Self.grupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="materias" EntityType="Self.materias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="niveles" EntityType="Self.niveles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profesores" EntityType="Self.profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincias" EntityType="Self.provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_centro" EntityType="Self.tipo_centro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Usuario_Roles" Association="Self.fk_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoMEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="Int32" Nullable="false" />
+          <Property Name="accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="afectado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="fecha_hora" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="cantones">
+          <Key>
+            <PropertyRef Name="id_canton" />
+          </Key>
+          <Property Name="id_canton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_provincia" Type="Int32" />
+          <Property Name="nombre_canton" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="centros_educativos">
+          <Key>
+            <PropertyRef Name="id_centro" />
+          </Key>
+          <Property Name="id_centro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_centro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo" Type="Int32" />
+          <Property Name="id_provincia" Type="Int32" />
+          <Property Name="id_canton" Type="Int32" />
+          <Property Name="id_distrito" Type="Int32" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="desglose">
+          <Key>
+            <PropertyRef Name="id_desglose" />
+          </Key>
+          <Property Name="id_desglose" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_materia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="desglose_porcentaje">
+          <Key>
+            <PropertyRef Name="id_porcentaje" />
+          </Key>
+          <Property Name="id_porcentaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_desglose" Type="Int32" />
+          <Property Name="porcentaje" Type="Double" />
+        </EntityType>
+        <EntityType Name="distritos">
+          <Key>
+            <PropertyRef Name="id_distrito" />
+          </Key>
+          <Property Name="id_distrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_canton" Type="Int32" />
+          <Property Name="id_provincia" Type="Int32" />
+          <Property Name="nombre_distrito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="grupos">
+          <Key>
+            <PropertyRef Name="id_grupo" />
+          </Key>
+          <Property Name="id_grupo" Type="Int32" Nullable="false" />
+          <Property Name="id_nivel" Type="Int32" />
+          <Property Name="nombre_grupo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_centro" Type="Int32" />
+        </EntityType>
+        <EntityType Name="materias">
+          <Key>
+            <PropertyRef Name="id_materia" />
+          </Key>
+          <Property Name="id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_materia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="niveles">
+          <Key>
+            <PropertyRef Name="id_nivel" />
+          </Key>
+          <Property Name="id_nivel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Notas">
+          <Key>
+            <PropertyRef Name="id_nota" />
+          </Key>
+          <Property Name="id_nota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nota" Type="Double" />
+          <Property Name="id_grupo" Type="Int32" />
+          <Property Name="nota_porcentaje" Type="Double" />
+        </EntityType>
+        <EntityType Name="profesores">
+          <Key>
+            <PropertyRef Name="id_profesor" />
+          </Key>
+          <Property Name="id_profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="id_grupo" Type="Int32" />
+          <Property Name="id_materia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="provincias">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_provincia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="nombre_rol" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.fk_Usuario_Roles" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipo_centro">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="Int32" Nullable="false" />
+          <Property Name="nombre_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="identificacion" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Roles" Relationship="Self.fk_Usuario_Roles" FromRole="Usuarios" ToRole="Roles" />
+        </EntityType>
+        <Association Name="fk_Usuario_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" />
+          <EntitySet Name="cantones" EntityType="Self.cantones" />
+          <EntitySet Name="centros_educativos" EntityType="Self.centros_educativos" />
+          <EntitySet Name="desglose" EntityType="Self.desglose" />
+          <EntitySet Name="desglose_porcentaje" EntityType="Self.desglose_porcentaje" />
+          <EntitySet Name="distritos" EntityType="Self.distritos" />
+          <EntitySet Name="grupos" EntityType="Self.grupos" />
+          <EntitySet Name="materias" EntityType="Self.materias" />
+          <EntitySet Name="niveles" EntityType="Self.niveles" />
+          <EntitySet Name="Notas" EntityType="Self.Notas" />
+          <EntitySet Name="profesores" EntityType="Self.profesores" />
+          <EntitySet Name="provincias" EntityType="Self.provincias" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tipo_centro" EntityType="Self.tipo_centro" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="fk_Usuario_Roles" Association="Self.fk_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoMEPModelStoreContainer" CdmEntityContainer="db">
+          <EntitySetMapping Name="bitacora">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.bitacora">
+              <MappingFragment StoreEntitySet="bitacora">
+                <ScalarProperty Name="id_bitacora" ColumnName="id_bitacora" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="afectado" ColumnName="afectado" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cantones">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.cantones">
+              <MappingFragment StoreEntitySet="cantones">
+                <ScalarProperty Name="id_canton" ColumnName="id_canton" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="nombre_canton" ColumnName="nombre_canton" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="centros_educativos">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.centros_educativos">
+              <MappingFragment StoreEntitySet="centros_educativos">
+                <ScalarProperty Name="id_centro" ColumnName="id_centro" />
+                <ScalarProperty Name="nombre_centro" ColumnName="nombre_centro" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="id_canton" ColumnName="id_canton" />
+                <ScalarProperty Name="id_distrito" ColumnName="id_distrito" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="desglose">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.desglose">
+              <MappingFragment StoreEntitySet="desglose">
+                <ScalarProperty Name="id_desglose" ColumnName="id_desglose" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="desglose_porcentaje">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.desglose_porcentaje">
+              <MappingFragment StoreEntitySet="desglose_porcentaje">
+                <ScalarProperty Name="id_porcentaje" ColumnName="id_porcentaje" />
+                <ScalarProperty Name="id_desglose" ColumnName="id_desglose" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distritos">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.distritos">
+              <MappingFragment StoreEntitySet="distritos">
+                <ScalarProperty Name="id_distrito" ColumnName="id_distrito" />
+                <ScalarProperty Name="id_canton" ColumnName="id_canton" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="nombre_distrito" ColumnName="nombre_distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupos">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.grupos">
+              <MappingFragment StoreEntitySet="grupos">
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="id_nivel" ColumnName="id_nivel" />
+                <ScalarProperty Name="nombre_grupo" ColumnName="nombre_grupo" />
+                <ScalarProperty Name="id_centro" ColumnName="id_centro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materias">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.materias">
+              <MappingFragment StoreEntitySet="materias">
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="niveles">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.niveles">
+              <MappingFragment StoreEntitySet="niveles">
+                <ScalarProperty Name="id_nivel" ColumnName="id_nivel" />
+                <ScalarProperty Name="nombre_nivel" ColumnName="nombre_nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notas">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.Notas">
+              <MappingFragment StoreEntitySet="Notas">
+                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="nota_porcentaje" ColumnName="nota_porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profesores">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.profesores">
+              <MappingFragment StoreEntitySet="profesores">
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincias">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.provincias">
+              <MappingFragment StoreEntitySet="provincias">
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="nombre_provincia" ColumnName="nombre_provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_centro">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.tipo_centro">
+              <MappingFragment StoreEntitySet="tipo_centro">
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="nombre_tipo" ColumnName="nombre_tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ProyectoMEPModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
